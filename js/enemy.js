@@ -1,4 +1,4 @@
-const Enemy = { 
+const Enemy = {
 	enemy_1 : function() {
 		var count = [1, 3, 5].sort(() => Math.random() - 0.5)[0];
 		var x = [50, app.screen.width - 50, 1].sort(() => Math.random() - 0.5)[0], y = -100;

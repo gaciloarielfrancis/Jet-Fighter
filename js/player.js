@@ -62,18 +62,18 @@ const Player = {
 			fire.y -= 0.1 * _vars.fireSpeed;
 
 			for(var i = _vars.enemyArr.length - 1; i > -1 ; i--) {
-				if(_vars.enemyArr[i].y > 50 && Misc.isColliding(fire, _vars.enemyArr[i])) {
+				if(Misc.isColliding(fire, _vars.enemyArr[i])) {
 					if(_vars.enemyArr[i].visible === false) {
 						return false;
 					}
 					_vars.enemyArr[i].Life -= _vars.fireDamage;
 					if(_vars.enemyArr[i].Life <= 0) {
-						window.cancelAnimationFrame(move);
+						app.ticker.remove(move);
+						_vars.enemyArr[i].visible = false;
+						app.stage.removeChild(_vars.enemyArr[i]);
 						Misc.explosion(_vars.enemyArr[i].x, _vars.enemyArr[i].y);
 						_vars.enemyArr[i].x = 2000;
 						_vars.enemyArr[i].y = 2000;
-						_vars.enemyArr[i].visible = false;
-						app.stage.removeChild(_vars.enemyArr[i]);
 						app.stage.removeChild(fire);
 						_vars.fireCount--;
 						Score.add();
@@ -89,7 +89,7 @@ const Player = {
 			}
 		}
 		_vars.fireCount++;
-	},
+	}, 
 
 	onUpdate : function() {
 		app.ticker.add(explode);
