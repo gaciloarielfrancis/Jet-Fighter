@@ -62,7 +62,7 @@ const Player = {
 			fire.y -= 0.1 * _vars.fireSpeed;
 
 			for(var i = _vars.enemyArr.length - 1; i > -1 ; i--) {
-				if(Misc.isColliding(fire, _vars.enemyArr[i])) {
+				if(_vars.enemyArr[i].y > 50 && Misc.isColliding(fire, _vars.enemyArr[i])) {
 					if(_vars.enemyArr[i].visible === false) {
 						return false;
 					}
