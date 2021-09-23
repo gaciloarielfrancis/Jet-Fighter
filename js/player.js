@@ -70,10 +70,12 @@ const Player = {
 					if(_vars.enemyArr[i].Life <= 0) {
 						app.ticker.remove(move);
 						_vars.enemyArr[i].visible = false;
-						app.stage.removeChild(_vars.enemyArr[i]);
-						Misc.explosion(_vars.enemyArr[i].x, _vars.enemyArr[i].y);
+						const x = _vars.enemyArr[i].x;
+						const y = _vars.enemyArr[i].y;
 						_vars.enemyArr[i].x = 2000;
 						_vars.enemyArr[i].y = 2000;
+						app.stage.removeChild(_vars.enemyArr[i]);
+						Misc.explosion(x, y);
 						app.stage.removeChild(fire);
 						_vars.fireCount--;
 						Score.add();
@@ -84,7 +86,6 @@ const Player = {
 						app.stage.removeChild(fire);
 						return false;
 					}
-					
 				}
 			}
 		}

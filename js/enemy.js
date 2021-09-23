@@ -1,10 +1,16 @@
 const Enemy = {
 	enemy_1 : function() {
-		var count = [1, 3, 5].sort(() => Math.random() - 0.5)[0];
-		var x = [50, app.screen.width - 50, 1].sort(() => Math.random() - 0.5)[0], y = -100;
+		const count = [1, 3, 5].sort(() => Math.random() - 0.5)[0];
+		let x = [50, app.screen.width - 50, 1].sort(() => Math.random() - 0.5)[0], y = -100;
 		if(x === 1) {
 			x = Math.floor(Math.random() * app.screen.width);
 		}
+
+		let isToRight = false;
+		if(x < (app.screen.width / 2)) {
+			isToRight = true;
+		}
+
 		for(var i = 0; i < count; i++) {
 			let e = PIXI.Sprite.from("images/enemy_1.png");
 			e.x = x;
@@ -29,7 +35,7 @@ const Enemy = {
 				e.y += 0.1 * _vars.ememy1Speed;
 			}
 			_vars.enemyArr.push(e);
-	  		(x < (app.screen.width / 2)) ? x += 100 : x -= 100;
+			(isToRight) ? x += 100 : x -= 100;
 		}
 	},
 
